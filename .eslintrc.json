@@ -1,3 +1,46 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["airbnb-base", "next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-nested-ternary": "off",
+    "import/extensions": [
+      "warn",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "warn",
+      {
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "bracketSpacing": true,
+        "endOfLine": "lf",
+        "printWidth": 128,
+        "quoteProps": "as-needed",
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "es5"
+      },
+      {
+        "usePrettierrc": true
+      }
+    ]
+  }
 }
