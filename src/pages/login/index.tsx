@@ -1,6 +1,23 @@
-import { Heading, HStack, Stack, FormControl, Flex, FormLabel, Input, Image, Button, Link } from '@chakra-ui/react';
+import { Heading, HStack, Stack, FormControl, Flex, FormLabel, Input, Image, Button, Link, Divider } from '@chakra-ui/react';
+import { ILogin } from '@/interfaces/API';
+import { login } from '@/services';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
 export default function Login() {
+  const { register, handleSubmit } = useForm<ILogin>();
+  const { mutate: loginUser } = useMutation(login, {
+    onSuccess: (response) => {
+      console.log(response);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+  const onSubmit = (data: ILogin) => {
+    loginUser(data);
+  };
+
   return (
     <>
       <HStack w="full" h="100vh">
@@ -17,18 +34,35 @@ export default function Login() {
             <Heading fontSize="2xl" color="purple.500">
               Sign in to your account
             </Heading>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Email address</FormLabel>
-              <Input type="password" placeholder="*****" />
-            </FormControl>
-            <Link color="purple.500" href="/signin">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormControl>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input
+                  id="email"
+                  type="name"
+                  placeholder="email"
+                  {...register('email', {
+                    required: 'This is required',
+                  })}
+                />
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  {...register('password', {
+                    required: 'This is required',
+                  })}
+                />
+              </FormControl>
+              <Button mt={4} colorScheme="teal" type="submit">
+                Submit
+              </Button>
+            </form>
+            <Divider />
+            <Link color="purple.500" href="/categories">
               Register
             </Link>
-            <Button colorScheme="purple">Sign in</Button>
           </Stack>
         </Flex>
       </HStack>
