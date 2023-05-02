@@ -3,15 +3,17 @@ import { ILogin } from '@/interfaces/API';
 import { login } from '@/services';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { useRouter } from 'next/router';
+import ROUTES from '@/constants/routes';
 
 export default function Login() {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<ILogin>();
   const { mutate: loginUser } = useMutation(login, {
     onSuccess: (response) => {
-      console.log(response);
-    },
-    onError: (error) => {
-      console.log(error);
+      if (response.data.success) {
+        router.push(ROUTES.CATEGORIES);
+      }
     },
   });
   const onSubmit = (data: ILogin) => {
