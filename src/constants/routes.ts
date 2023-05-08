@@ -6,11 +6,13 @@ const AUTH = {
 };
 
 const CATEGORIES = '/categories';
+const QUIZ = '/quiz';
 
 const ROUTES = {
   HOME,
   AUTH,
   CATEGORIES,
+  QUIZ,
 };
 
 export default ROUTES;
