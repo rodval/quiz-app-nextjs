@@ -1,5 +1,5 @@
 import { IAnswer } from '@/interfaces/API';
-import { Button } from '@chakra-ui/react';
+import { Button, Center } from '@chakra-ui/react';
 
 type AnswerButtonProps = {
   answerDetail: IAnswer;
@@ -17,7 +17,19 @@ const AnswerButton = (props: AnswerButtonProps) => {
   };
 
   return (
-    <Button key={id} onClick={onClick}>
+    <Button
+      backgroundColor={'white'}
+      boxShadow="lg"
+      rounded="lg"
+      textAlign="center"
+      h={55}
+      border={2}
+      borderColor={'gray.500'}
+      textColor={'blue.400'}
+      fontWeight="bold"
+      fontSize={22}
+      key={id}
+      onClick={onClick}>
       {answerTitle}
     </Button>
   );

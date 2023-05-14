@@ -41,7 +41,7 @@ export default function Quiz() {
     <>
       <HStack w="full" h="100vh">
         <Flex w="full" h="full" alignItems="center" justifyContent="center">
-          <SimpleGrid columns={2} spacing={10} alignContent="center">
+          <SimpleGrid columns={1} spacing={10} alignContent="center">
             {isQuizDone ? (
               <Link href={ROUTES.CATEGORIES}>
                 <Text>Done! {score}</Text>
