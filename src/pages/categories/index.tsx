@@ -1,4 +1,4 @@
-import { HStack, SimpleGrid, Flex } from '@chakra-ui/react';
+import { HStack, SimpleGrid, Flex, Box, Text, Image } from '@chakra-ui/react';
 import { ICategory } from '@/interfaces/API';
 import { getCategories } from '@/services';
 import { useState } from 'react';
@@ -28,11 +28,6 @@ export default function Home() {
 
   return (
     <>
-<<<<<<< Updated upstream
-      <HStack w="full" h="100vh">
-        <Flex w="full" h="full" alignItems="center" justifyContent="center">
-          <SimpleGrid columns={2} spacing={10} alignContent="center">
-=======
       <HStack
         w="full"
         h="100vh"
@@ -61,7 +56,6 @@ export default function Home() {
 
         <Flex w="full" h="full" justifyContent="center">
           <SimpleGrid columns={2} spacing={20} alignContent="center">
->>>>>>> Stashed changes
             {categories.map((category) => (
               <CategoryCard key={category.id} categoryDetail={category} onCardClick={onCardClick} />
             ))}
