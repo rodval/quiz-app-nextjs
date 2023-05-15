@@ -1,18 +1,18 @@
 import { IAnswer } from '@/interfaces/API';
-import { Button, Center } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 type AnswerButtonProps = {
   answerDetail: IAnswer;
-  onButtonClick?: (answer: IAnswer) => void;
+  onButtonClick?: (isCorrect: boolean) => void;
 };
 
 const AnswerButton = (props: AnswerButtonProps) => {
   const { answerDetail, onButtonClick } = props;
-  const { id, answerTitle } = answerDetail;
+  const { id, answerTitle, isCorrect } = answerDetail;
 
   const onClick = () => {
     if (onButtonClick) {
-      onButtonClick(answerDetail);
+      onButtonClick(isCorrect);
     }
   };
 
