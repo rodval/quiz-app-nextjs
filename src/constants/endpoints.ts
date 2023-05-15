@@ -1,16 +1,14 @@
-import { IQuestionRequest } from '@/interfaces/API';
-
 const AUTH = {
-  LOGIN: 'https://localhost:32768/api/Auth/Login',
-  REGISTER: 'https://localhost:32768/api/Auth/Register',
+  LOGIN: 'https://localhost:32772/api/Auth/Login',
+  REGISTER: 'https://localhost:32772/api/Auth/Register',
 };
 
 const CATEGORIES = {
-  DATA: 'https://localhost:32768/api/Categories',
+  DATA: 'https://localhost:32772/api/Categories',
 };
 
 const QUESTIONS = {
-  DATA: 'https://localhost:32768/api/Questions',
+  DATA: 'https://localhost:32772/api/Questions',
 };
 
 const ENDPOINTS = {

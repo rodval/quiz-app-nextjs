@@ -6,12 +6,10 @@ import {
   Flex,
   FormLabel,
   Input,
-  Image,
   Button,
   Link,
   Divider,
   Box,
-  Center,
   Text,
 } from '@chakra-ui/react';
 import { ILogin } from '@/interfaces/API';
@@ -49,7 +47,7 @@ export default function Login() {
           <Flex w="full" h="full" alignItems="center" justifyContent="center">
             <Stack w="full" maxW="md" spacing={6} p={8} backgroundColor={'white'} borderRadius="20px">
               <Heading fontSize="2xl" color="purple.500" fontWeight={700} textAlign="center" marginTop="40px">
-                Login
+                Welcome! Log in to your account to continue
               </Heading>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
@@ -104,7 +102,7 @@ export default function Login() {
                 <Text color="gray.500" marginTop={30} marginBottom={2}>
                   Or Sign Up Using{' '}
                 </Text>
-                <Link color="purple.500" fontWeight={500} href="/categories">
+                <Link color="purple.500" fontWeight={500}>
                   Register
                 </Link>
               </Flex>

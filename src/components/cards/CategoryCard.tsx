@@ -8,7 +8,7 @@ type CategoryCardProps = {
 
 const CategoryCard = (props: CategoryCardProps) => {
   const { categoryDetail, onCardClick } = props;
-  const { id, title } = categoryDetail;
+  const { id, title, image } = categoryDetail;
 
   const onClick = () => {
     if (onCardClick) {
@@ -27,7 +27,7 @@ const CategoryCard = (props: CategoryCardProps) => {
       onClick={onClick}>
       <Flex alignItems="center" justifyContent="space-around">
         <Box position="relative" bottom={35} left={5}>
-          <Image w={125} h={125} src="/public/Img/sociales.png" alt="Sociales" />
+          <Image w={125} h={125} src={image} alt="Sociales" />
         </Box>
         <Box marginTop={35}>
           <Text textAlign={'right'} marginTop={12} fontWeight={450} color={'white'}>
