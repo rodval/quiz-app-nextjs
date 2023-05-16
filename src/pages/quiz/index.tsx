@@ -14,7 +14,7 @@ export default function Quiz() {
 
   const { isFetching, isIdle, isError, status } = useQuery({
     queryKey: 'questions',
-    queryFn: () => getQuestions({ categoryId: Number(categoryId), numberOfQuestions }),
+    queryFn: () => getQuestions({ categoryQuizId: Number(categoryId), numberOfQuestions }),
     onSuccess: (response) => {
       setQuestions(response.data);
     },

@@ -1,5 +1,5 @@
 import { VStack, SimpleGrid, Flex, Box, Text, Image } from '@chakra-ui/react';
-import { ICategory } from '@/interfaces/API';
+import { ICategoryQuiz } from '@/interfaces/API';
 import { getCategories } from '@/services';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -9,9 +9,9 @@ import ROUTES from '@/constants/routes';
 
 export default function Home() {
   const router = useRouter();
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [categoryQuizzes, setCategories] = useState<ICategoryQuiz[]>([]);
 
-  const onCardClick = (category: ICategory) => {
+  const onCardClick = (category: ICategoryQuiz) => {
     router.push({
       pathname: ROUTES.QUIZ,
       query: { categoryId: category.id },
@@ -50,8 +50,8 @@ export default function Home() {
 
         <Flex w="full" h="full" justifyContent="center">
           <SimpleGrid columns={2} spacing={20} alignContent="center">
-            {categories.map((category) => (
-              <CategoryCard key={category.id} categoryDetail={category} onCardClick={onCardClick} />
+            {categoryQuizzes.map((categoryQuiz) => (
+              <CategoryCard key={categoryQuiz.id} categoryDetail={categoryQuiz} onCardClick={onCardClick} />
             ))}
           </SimpleGrid>
         </Flex>

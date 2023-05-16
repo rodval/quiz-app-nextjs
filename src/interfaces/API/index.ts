@@ -5,3 +5,5 @@ export type { ICategory } from './ICategory';
 export type { IAnswer } from './IAnswer';
 export type { IQuestion } from './IQuestion';
 export type { IQuestionRequest } from './IQuestionRequest';
+export type { ICategoryQuiz } from './ICategoryQuiz';
+export type { IUserQuiz } from './IUserQuiz';

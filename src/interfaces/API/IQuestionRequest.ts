@@ -1,4 +1,4 @@
 export interface IQuestionRequest {
-  categoryId: number;
+  categoryQuizId: number;
   numberOfQuestions: number;
 }
