@@ -76,6 +76,7 @@ const Questions = (props: QuestionsProps) => {
                     <Center>
                       <Box
                         w={400}
+                        minW={400}
                         h={200}
                         marginRight={50}
                         marginLeft={50}

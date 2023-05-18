@@ -18,11 +18,12 @@ const AnswerButton = (props: AnswerButtonProps) => {
 
   return (
     <Button
-      backgroundColor={'white'}
+      backgroundColor={'whiteAlpha.300'}
       boxShadow="lg"
       rounded="lg"
       textAlign="center"
       h={55}
+      w="lg"
       border={2}
       borderColor={'gray.500'}
       textColor={'blue.400'}

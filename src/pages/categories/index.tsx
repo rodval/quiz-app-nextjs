@@ -18,6 +18,10 @@ export default function Home() {
     });
   };
 
+  const onRankClick = () => {
+    router.push(ROUTES.RANK);
+  };
+
   const { isFetching, isIdle, isError, status } = useQuery({
     queryKey: 'categories',
     queryFn: () => getCategories(),
@@ -43,7 +47,7 @@ export default function Home() {
             </Text>
             <Text fontWeight={500}>Elige una opcion</Text>
           </Box>
-          <Box>
+          <Box onClick={onRankClick}>
             <Image w={85} h={85} src="/Img/copa.png" alt="copa" />
           </Box>
         </Flex>
