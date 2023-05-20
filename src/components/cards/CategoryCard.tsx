@@ -7,9 +7,9 @@ type CategoryCardProps = {
 };
 
 const CategoryCard = (props: CategoryCardProps) => {
-  const { categoryDetail, onCardClick } = props;
-  const { id, level, category, userQuiz } = categoryDetail;
-  const { title, image } = category;
+  const { categoryDetail, onCardClick } = props || {};
+  const { id, level, category, userQuiz } = categoryDetail || {};
+  const { title, image } = category || {};
 
   const onClick = () => {
     if (onCardClick) {

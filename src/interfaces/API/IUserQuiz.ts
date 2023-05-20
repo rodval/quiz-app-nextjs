@@ -1,6 +1,8 @@
+import { IUser } from './IUser';
+
 export interface IUserQuiz {
   id: number;
   score: number;
-  userId: number;
+  user: IUser;
   categoryQuizId: number;
 }

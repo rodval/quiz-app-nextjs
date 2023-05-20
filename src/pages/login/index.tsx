@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { ILogin } from '@/interfaces/API';
-import { login } from '@/services';
+import { login, useTokenStore } from '@/services';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
@@ -22,11 +22,12 @@ import ROUTES from '@/constants/routes';
 export default function Login() {
   const router = useRouter();
   const { register, handleSubmit } = useForm<ILogin>();
+  const { token, setToken } = useTokenStore((tokenStore) => tokenStore);
   const { mutate: loginUser } = useMutation(login, {
     onSuccess: (response) => {
-      if (response.data.success) {
-        router.push(ROUTES.CATEGORIES);
-      }
+      setToken(response.data.result);
+
+      router.push(ROUTES.CATEGORIES);
     },
   });
   const onSubmit = (data: ILogin) => {
