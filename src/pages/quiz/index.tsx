@@ -1,6 +1,6 @@
 import { HStack, SimpleGrid, Flex, Text, Link } from '@chakra-ui/react';
 import { IQuestion } from '@/interfaces/API';
-import { getQuestions } from '@/services';
+import { GetQuestions } from '@/services';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ export default function Quiz() {
 
   const { isFetching, isIdle, isError, status } = useQuery({
     queryKey: 'questions',
-    queryFn: () => getQuestions({ categoryQuizId: Number(categoryId), numberOfQuestions }),
+    queryFn: () => GetQuestions({ categoryQuizId: Number(categoryId), numberOfQuestions }),
     onSuccess: (response) => {
       setQuestions(response.data);
     },

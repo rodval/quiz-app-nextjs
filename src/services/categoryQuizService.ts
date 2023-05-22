@@ -2,9 +2,7 @@ import axios from 'axios';
 import ENDPOINTS from '@/constants/endpoints';
 import { ICategoryQuiz } from '@/interfaces/API';
 
-const getCategories = async () => {
-  const token = localStorage.getItem('result');
-
+export const GetCategories = async (token: string) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -16,4 +14,14 @@ const getCategories = async () => {
   return data;
 };
 
-export default getCategories;
+export const GetUserCategories = async (token: string) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const data = await axios.get<ICategoryQuiz[]>(ENDPOINTS.CATEGORIES.USERCATEGORY, config);
+
+  return data;
+};

@@ -1,9 +1,5 @@
-export type { ILogin } from './ILogin';
-export type { ISignin } from './ISignin';
-export type { IApiResponse } from './IApiResponse';
-export type { ICategory } from './ICategory';
+export type * from './Auth';
+export type * from './Categories';
+export type * from './Questions';
 export type { IAnswer } from './IAnswer';
-export type { IQuestion } from './IQuestion';
-export type { IQuestionRequest } from './IQuestionRequest';
-export type { ICategoryQuiz } from './ICategoryQuiz';
 export type { IUserQuiz } from './IUserQuiz';

@@ -1,4 +1,4 @@
-import { IAnswer } from './IAnswer';
+import { IAnswer } from '../IAnswer';
 
 export interface IQuestion {
   id: number;

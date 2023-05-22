@@ -1,5 +1,5 @@
 import { ICategory } from './ICategory';
-import { IUserQuiz } from './IUserQuiz';
+import { IUserQuiz } from '../IUserQuiz';
 
 export interface ICategoryQuiz {
   id: number;

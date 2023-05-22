@@ -12,8 +12,8 @@ import {
   Box,
   Text,
 } from '@chakra-ui/react';
-import { ILogin } from '@/interfaces/API';
-import { login, useTokenStore } from '@/services';
+import { ISignIn } from '@/interfaces/API';
+import { SignIn, UseTokenStore } from '@/services';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
@@ -21,16 +21,16 @@ import ROUTES from '@/constants/routes';
 
 export default function Login() {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<ILogin>();
-  const { token, setToken } = useTokenStore((tokenStore) => tokenStore);
-  const { mutate: loginUser } = useMutation(login, {
+  const { register, handleSubmit } = useForm<ISignIn>();
+  const { setToken } = UseTokenStore((tokenStore) => tokenStore);
+  const { mutate: loginUser } = useMutation(SignIn, {
     onSuccess: (response) => {
       setToken(response.data.result);
 
       router.push(ROUTES.CATEGORIES);
     },
   });
-  const onSubmit = (data: ILogin) => {
+  const onSubmit = (data: ISignIn) => {
     loginUser(data);
   };
 
