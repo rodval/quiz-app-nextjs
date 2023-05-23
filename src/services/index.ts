@@ -1,4 +1,5 @@
-export { default as login } from './authService';
-export { default as getCategories } from './categoryQuizService';
-export { default as getQuestions } from './questionService';
-export { default as useTokenStore } from './tokenStore';
+export { default as SignIn } from './signInService';
+export { GetCategories, GetUserCategories } from './categoryQuizService';
+export { default as GetQuestions } from './questionService';
+export { default as UseTokenStore } from './tokenStore';
+export { default as SaveUserQuiz } from './userQuizService';

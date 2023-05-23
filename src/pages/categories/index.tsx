@@ -1,6 +1,6 @@
 import { VStack, SimpleGrid, Flex, Box, Text, Image } from '@chakra-ui/react';
 import { ICategoryQuiz } from '@/interfaces/API';
-import { getCategories } from '@/services';
+import { GetUserCategories, UseTokenStore } from '@/services';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { CategoryCard } from '@/components';
@@ -9,6 +9,7 @@ import ROUTES from '@/constants/routes';
 
 export default function Home() {
   const router = useRouter();
+  const { token } = UseTokenStore((tokenStore) => tokenStore);
   const [categoryQuizzes, setCategories] = useState<ICategoryQuiz[]>([]);
 
   const onCardClick = (category: ICategoryQuiz) => {
@@ -24,7 +25,7 @@ export default function Home() {
 
   const { isFetching, isIdle, isError, status } = useQuery({
     queryKey: 'categories',
-    queryFn: () => getCategories(),
+    queryFn: () => GetUserCategories(token),
     onSuccess: (response) => {
       setCategories(response.data);
     },

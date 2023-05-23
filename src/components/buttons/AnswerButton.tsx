@@ -3,11 +3,12 @@ import { Button } from '@chakra-ui/react';
 
 type AnswerButtonProps = {
   answerDetail: IAnswer;
+  showFeedback: boolean;
   onButtonClick?: (isCorrect: boolean) => void;
 };
 
 const AnswerButton = (props: AnswerButtonProps) => {
-  const { answerDetail, onButtonClick } = props;
+  const { answerDetail, showFeedback, onButtonClick } = props;
   const { id, answerTitle, isCorrect } = answerDetail;
 
   const onClick = () => {
@@ -18,7 +19,6 @@ const AnswerButton = (props: AnswerButtonProps) => {
 
   return (
     <Button
-      backgroundColor={'whiteAlpha.300'}
       boxShadow="lg"
       rounded="lg"
       textAlign="center"
@@ -30,7 +30,9 @@ const AnswerButton = (props: AnswerButtonProps) => {
       fontWeight="bold"
       fontSize={22}
       key={id}
-      onClick={onClick}>
+      onClick={onClick}
+      isDisabled={showFeedback}
+      colorScheme={showFeedback ? (isCorrect ? 'green' : 'red') : 'none'}>
       {answerTitle}
     </Button>
   );
