@@ -1,30 +1,43 @@
-import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Link } from '@chakra-ui/react';
+import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Button } from '@chakra-ui/react';
+import { SaveUserQuiz, UseTokenStore } from '@/services';
 import { AnswerButton } from '@/components';
 import { IQuestion } from '@/interfaces/API';
 import { useState, useEffect } from 'react';
+import { useMutation } from 'react-query';
+import { useRouter } from 'next/router';
 import ROUTES from '@/constants/routes';
 
 type QuestionsProps = {
+  categoryId: number;
   questions: IQuestion[];
 };
 
 const Questions = (props: QuestionsProps) => {
-  const { questions } = props;
+  const router = useRouter();
+  const { categoryId, questions } = props;
+  const { token } = UseTokenStore((tokenStore) => tokenStore);
   const [seconds, setSeconds] = useState(10);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [isQuizDone, setIsQuizDone] = useState(false);
+  const [isFeedbackTime, setIsFeedbackTime] = useState(false);
   const question = questions[currentQuestion];
 
-  const restart = () => {
-    setSeconds(10);
+  const { mutate: SaveQuiz } = useMutation(SaveUserQuiz, {
+    onSuccess: (response) => {
+      router.push(ROUTES.CATEGORIES);
+    },
+  });
+
+  const restart = (time: number) => {
+    setSeconds(time);
   };
 
   const nextQuestion = () => {
     if (currentQuestion === questions.length - 1) {
       setIsQuizDone(true);
     } else {
-      restart();
+      restart(10);
       setCurrentQuestion(currentQuestion + 1);
     }
   };
@@ -34,6 +47,7 @@ const Questions = (props: QuestionsProps) => {
       if (seconds === 0) {
         clearInterval(timer);
         nextQuestion();
+        setIsFeedbackTime(false);
       } else {
         setSeconds((second) => second - 1);
       }
@@ -46,7 +60,12 @@ const Questions = (props: QuestionsProps) => {
       setCorrectAnswers((correctAnswer) => correctAnswer + 1);
     }
 
-    nextQuestion();
+    restart(3);
+    setIsFeedbackTime(true);
+  };
+
+  const saveAnswer = () => {
+    SaveQuiz({ score: correctAnswers, categoryQuizId: categoryId, token });
   };
 
   return (
@@ -54,15 +73,14 @@ const Questions = (props: QuestionsProps) => {
       <Stack>
         <Center w="full" h="100vh">
           {isQuizDone ? (
-            <Link href={ROUTES.CATEGORIES}>
-              <Text>Done! {correctAnswers}</Text>
-            </Link>
+            <Button onClick={saveAnswer}>Done! {correctAnswers}</Button>
           ) : (
             <Stack>
               <Text fontWeight={'bold'} fontSize={35}>
                 Trivia de Matematicas.
               </Text>
               <Text>Elige sabiamente la opcion correcta. Mucha suerte!</Text>
+              <Text>Time {seconds}</Text>
               <Text fontWeight={'bold'} fontSize={16}>
                 {' '}
                 Nivel 1
@@ -96,7 +114,11 @@ const Questions = (props: QuestionsProps) => {
                     <CardBody>
                       <SimpleGrid columns={1} spacing={10} alignContent="center">
                         {question?.answers.map((answers) => (
-                          <AnswerButton key={answers.id} answerDetail={answers} onButtonClick={validateAnswer}></AnswerButton>
+                          <AnswerButton
+                            key={answers.id}
+                            answerDetail={answers}
+                            showFeedback={isFeedbackTime}
+                            onButtonClick={validateAnswer}></AnswerButton>
                         ))}
                       </SimpleGrid>
                     </CardBody>

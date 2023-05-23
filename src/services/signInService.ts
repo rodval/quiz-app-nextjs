@@ -1,9 +1,9 @@
 import axios from 'axios';
 import ENDPOINTS from '@/constants/endpoints';
-import { ISignIn, IAuthResponse } from '@/interfaces/API';
+import { ISignIn, IApiResponse } from '@/interfaces/API';
 
 const SignIn = async ({ email, password }: ISignIn) => {
-  const data = await axios.post<IAuthResponse>(ENDPOINTS.AUTH.LOGIN, {
+  const data = await axios.post<IApiResponse>(ENDPOINTS.AUTH.LOGIN, {
     email,
     password,
   });

@@ -13,7 +13,7 @@ const QUESTIONS = {
 };
 
 const USERQUIZ = {
-  DATA: 'https://localhost:32768/api/UserQuiz',
+  SAVEQUIZ: 'https://localhost:32768/api/UserQuiz',
 };
 
 const ENDPOINTS = {

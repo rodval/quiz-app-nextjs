@@ -1,6 +1,6 @@
 import { VStack, SimpleGrid, Flex, Box, Text, Image } from '@chakra-ui/react';
 import { ICategoryQuiz } from '@/interfaces/API';
-import { GetCategories, GetUserCategories, UseTokenStore } from '@/services';
+import { GetUserCategories, UseTokenStore } from '@/services';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { CategoryCard } from '@/components';
