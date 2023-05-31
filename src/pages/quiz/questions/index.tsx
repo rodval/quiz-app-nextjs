@@ -1,4 +1,4 @@
-import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Button } from '@chakra-ui/react';
+import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Button, Img } from '@chakra-ui/react';
 import { SaveUserQuiz, UseTokenStore } from '@/services';
 import { AnswerButton } from '@/components';
 import { IQuestion } from '@/interfaces/API';
@@ -66,6 +66,7 @@ const Questions = (props: QuestionsProps) => {
 
   const saveAnswer = () => {
     SaveQuiz({ score: correctAnswers, categoryQuizId: categoryId, token });
+    router.push(ROUTES.CATEGORIES);
   };
 
   return (
@@ -73,7 +74,21 @@ const Questions = (props: QuestionsProps) => {
       <Stack>
         <Center w="full" h="100vh">
           {isQuizDone ? (
-            <Button onClick={saveAnswer}>Done! {correctAnswers}</Button>
+            <Stack>
+              <Center height="100vh">
+                <Box textAlign="center">
+                  <Img src="/Img/checkDone.png" alt="Imagen" boxSize="300px" mx="auto" />
+                  <Text mt="4" my="8" fontWeight={'bold'} fontSize={20}>
+                    Cuestionario completado!
+                  </Text>
+                  <Text mt="4" my="8" fontWeight={'500'} fontSize={20}>
+                    Haz acertado correctamente {correctAnswers} de 5 items
+                  </Text>
+
+                  <Button onClick={saveAnswer}>Continuar</Button>
+                </Box>
+              </Center>
+            </Stack>
           ) : (
             <Stack>
               <Text fontWeight={'bold'} fontSize={35}>
@@ -86,7 +101,7 @@ const Questions = (props: QuestionsProps) => {
                 Nivel 1
               </Text>
               <Text>
-                {questions.length}/{currentQuestion + 1}
+                {currentQuestion + 1}/{questions.length}
               </Text>
               <Card overflow="hidden" variant="outline" flexDirection="column" boxShadow="none" border="none">
                 <Stack>
