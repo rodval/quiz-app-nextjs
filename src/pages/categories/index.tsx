@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   const { isFetching, isIdle, isError, status } = useQuery({
-    queryKey: 'categories',
+    queryKey: 'userCategories',
     queryFn: () => GetUserCategories(token),
     onSuccess: (response) => {
       setCategories(response.data);

@@ -1,32 +1,37 @@
-import { Box, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
+import { ICategoryQuiz } from '@/interfaces/API';
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Text, Flex, GridItem } from '@chakra-ui/react';
 
-function TablaPosiciones() {
-  const posiciones = [
-    { nombre: 'Usuario 1', puntuacion: 100 },
-    { nombre: 'Usuario 2', puntuacion: 80 },
-    { nombre: 'Usuario 3', puntuacion: 120 },
-  ];
+type RankCardProps = {
+  categoryDetail: ICategoryQuiz;
+};
 
+const RankCard = (props: RankCardProps) => {
+  const { categoryDetail } = props || {};
+  const { level, category, userQuiz } = categoryDetail || {};
   return (
-    <Box overflowX="auto">
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Nombre</Th>
-            <Th>Puntuación</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {posiciones.map((usuario, index) => (
-            <Tr key={index}>
-              <Td>{usuario.nombre}</Td>
-              <Td>{usuario.puntuacion}</Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </Box>
+    <GridItem bg="gray.200" p={4} borderRadius={15}>
+      <Box borderRadius="15">
+        <Flex align="center" justify="center">
+          <Box>
+            <img src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
+            <Text> {category.title} </Text>
+            <Text>nivel {level}</Text>
+          </Box>
+        </Flex>
+        <Table variant="simple">
+          <Thead></Thead>
+          <Tbody>
+            {userQuiz.map((quiz) => (
+              <Tr key={quiz.id}>
+                <Td>{quiz.user.UserName}</Td>
+                <Td>{quiz.score}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
+    </GridItem>
   );
-}
+};
 
-export default TablaPosiciones;
+export default RankCard;

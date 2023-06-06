@@ -5,5 +5,5 @@ export interface ICategoryQuiz {
   id: number;
   level: number;
   category: ICategory;
-  userQuiz: IUserQuiz;
+  userQuiz: IUserQuiz[];
 }
