@@ -10,7 +10,7 @@ import ROUTES from '@/constants/routes';
 export default function Home() {
   const router = useRouter();
   const { token } = UseTokenStore((tokenStore) => tokenStore);
-  const [categoryQuizzes, setCategories] = useState<ICategoryQuiz[]>([]);
+  const [userCategories, setUserCategories] = useState<ICategoryQuiz[]>([]);
 
   const onCardClick = (category: ICategoryQuiz) => {
     router.push({
@@ -27,7 +27,7 @@ export default function Home() {
     queryKey: 'userCategories',
     queryFn: () => GetUserCategories(token),
     onSuccess: (response) => {
-      setCategories(response.data);
+      setUserCategories(response.data);
     },
   });
 
@@ -56,8 +56,8 @@ export default function Home() {
 
         <Flex w="full" h="full" justifyContent="center">
           <SimpleGrid columns={2} spacing={20} alignContent="center">
-            {categoryQuizzes.map((categoryQuiz) => (
-              <CategoryCard key={categoryQuiz.id} categoryDetail={categoryQuiz} onCardClick={onCardClick} />
+            {userCategories.map((userCategory) => (
+              <CategoryCard key={userCategory.id} categoryDetail={userCategory} onCardClick={onCardClick} />
             ))}
           </SimpleGrid>
         </Flex>

@@ -1,15 +1,13 @@
-import { Box, Text, Grid, GridItem, Stack } from '@chakra-ui/react';
-import { RankCard } from '@/components/rankcard';
-import { Navbar } from '@/components';
+import { Box, Text, Grid, Stack } from '@chakra-ui/react';
+import { Navbar, RankCard } from '@/components';
 import { GetCategories, UseTokenStore } from '@/services';
 import { ICategoryQuiz } from '@/interfaces/API';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import RankCategoryCard from '@/components/rankcard/RankCard';
 
 export default function Rank() {
   const { token } = UseTokenStore((tokenStore) => tokenStore);
-  const [categoryQuizzes, setCategories] = useState<ICategoryQuiz[]>([]);
+  const [categories, setCategories] = useState<ICategoryQuiz[]>([]);
 
   const { isFetching, isIdle, isError, status } = useQuery({
     queryKey: 'categories',
@@ -38,7 +36,7 @@ export default function Rank() {
           mx="auto"
           maxW="800px"
           borderRadius={15}>
-          {categoryQuizzes.map((category) => (
+          {categories.map((category) => (
             <RankCard key={category.id} categoryDetail={category} />
           ))}
         </Grid>
