@@ -1,8 +1,8 @@
 const HOME = '/';
 
 const AUTH = {
-  LOGIN: '/login',
   SIGNIN: '/signin',
+  SIGNUP: '/signup',
 };
 
 const CATEGORIES = '/categories';

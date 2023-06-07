@@ -2,7 +2,7 @@ import axios from 'axios';
 import ENDPOINTS from '@/constants/endpoints';
 import { IUserQuizRequest, IApiResponse } from '@/interfaces/API';
 
-const SaveUserQuiz = async ({ score, categoryQuizId, token }: IUserQuizRequest) => {
+const SaveUserQuizService = async ({ score, categoryQuizId, token }: IUserQuizRequest) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -21,4 +21,4 @@ const SaveUserQuiz = async ({ score, categoryQuizId, token }: IUserQuizRequest) 
   return response;
 };
 
-export default SaveUserQuiz;
+export default SaveUserQuizService;
