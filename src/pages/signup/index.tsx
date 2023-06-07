@@ -1,37 +1,31 @@
-import {
-  Heading,
-  HStack,
-  Stack,
-  FormControl,
-  Flex,
-  FormLabel,
-  Input,
-  Button,
-  Link,
-  Divider,
-  Box,
-  Text,
-} from '@chakra-ui/react';
-import { ISignIn } from '@/interfaces/API';
-import { SignIn, UseTokenStore } from '@/services';
+import { Heading, HStack, Stack, FormControl, Flex, Input, Button, Link, Divider, Box, Text, useToast } from '@chakra-ui/react';
+import { ISignUp } from '@/interfaces/API';
+import { signUpService } from '@/services';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 import ROUTES from '@/constants/routes';
 
-export default function Login() {
+export default function SignUp() {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<ISignIn>();
-  const { setToken } = UseTokenStore((tokenStore) => tokenStore);
-  const { mutate: loginUser } = useMutation(SignIn, {
-    onSuccess: (response) => {
-      setToken(response.data.result);
-
-      router.push(ROUTES.CATEGORIES);
+  const toast = useToast();
+  const { register, handleSubmit } = useForm<ISignUp>();
+  const { mutate: signUpUser } = useMutation(signUpService, {
+    onSuccess: () => {
+      toast({
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'success',
+        duration: 2000,
+        isClosable: false,
+        onCloseComplete: () => {
+          router.push(ROUTES.HOME);
+        },
+      });
     },
   });
-  const onSubmit = (data: ISignIn) => {
-    loginUser(data);
+  const onSubmit = (data: ISignUp) => {
+    signUpUser(data);
   };
 
   return (
@@ -52,27 +46,51 @@ export default function Login() {
               </Heading>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
-                  <FormLabel htmlFor="email" marginTop="20px">
-                    Email
-                  </FormLabel>
                   <Input
-                    placeholder="Correo electrónico"
+                    placeholder="First Name"
                     size="lg"
                     variant="filled"
                     backgroundColor="white"
                     borderColor="gray.100"
                     borderRadius={10}
-                    id="email"
+                    id="firstName"
                     type="name"
-                    {...register('email', {
+                    {...register('firstName', {
                       required: 'This is required',
                     })}
                     marginBottom="20px"
                   />
-                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <Input
+                    placeholder="Last Name"
+                    size="lg"
+                    variant="filled"
+                    backgroundColor="white"
+                    borderColor="gray.100"
+                    borderRadius={10}
+                    id="lastName"
+                    type="name"
+                    {...register('lastName', {
+                      required: 'This is required',
+                    })}
+                    marginBottom="20px"
+                  />
+                  <Input
+                    placeholder="User Name"
+                    size="lg"
+                    variant="filled"
+                    backgroundColor="white"
+                    borderColor="gray.100"
+                    borderRadius={10}
+                    id="userName"
+                    type="name"
+                    {...register('userName', {
+                      required: 'This is required',
+                    })}
+                    marginBottom="20px"
+                  />
                   <Input
                     type="password"
-                    placeholder="Contraseña"
+                    placeholder="Password"
                     size="lg"
                     variant="filled"
                     backgroundColor="white"
@@ -94,17 +112,17 @@ export default function Login() {
                     _hover={{ bg: 'purple.200' }}
                     borderRadius={15}
                     type="submit">
-                    Login
+                    SignUp
                   </Button>
                 </Flex>
               </form>
               <Divider />
               <Flex flexDirection={'column'} alignItems="center">
                 <Text color="gray.500" marginTop={30} marginBottom={2}>
-                  Or Sign Up Using{' '}
+                  Dont have an account yet?
                 </Text>
-                <Link color="purple.500" fontWeight={500}>
-                  Register
+                <Link color="purple.500" fontWeight={500} href={ROUTES.AUTH.SIGNIN}>
+                  Join Here
                 </Link>
               </Flex>
             </Stack>

@@ -9,8 +9,11 @@ export default function ToastExample() {
           title: 'Account created.',
           description: "We've created your account for you.",
           status: 'success',
-          duration: 9000,
-          isClosable: true,
+          duration: 2500,
+          isClosable: false,
+          onCloseComplete: () => {
+            console.log('Hola');
+          },
         })
       }>
       Show Toast

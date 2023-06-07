@@ -1,4 +1,4 @@
 export interface ISignIn {
-  email: string;
+  user: string;
   password: string;
 }

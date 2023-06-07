@@ -1,5 +1,5 @@
 import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Button, Img } from '@chakra-ui/react';
-import { SaveUserQuiz, UseTokenStore } from '@/services';
+import { SaveUserQuizService, UseTokenStore } from '@/services';
 import { AnswerButton } from '@/components';
 import { IQuestion } from '@/interfaces/API';
 import { useState, useEffect } from 'react';
@@ -23,8 +23,8 @@ const Questions = (props: QuestionsProps) => {
   const [isFeedbackTime, setIsFeedbackTime] = useState(false);
   const question = questions[currentQuestion];
 
-  const { mutate: SaveQuiz } = useMutation(SaveUserQuiz, {
-    onSuccess: (response) => {
+  const { mutate: SaveQuiz } = useMutation(SaveUserQuizService, {
+    onSuccess: () => {
       router.push(ROUTES.CATEGORIES);
     },
   });
