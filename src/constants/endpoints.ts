@@ -1,19 +1,21 @@
+const BASEURL = 'https://localhost:32770/api/';
+
 const AUTH = {
-  LOGIN: 'https://localhost:32768/api/Auth/Login',
-  REGISTER: 'https://localhost:32768/api/Auth/Register',
+  SIGNIN: `${BASEURL}Auth/SignIn`,
+  SIGNUP: `${BASEURL}Auth/SignUp`,
 };
 
 const CATEGORIES = {
-  DATA: 'https://localhost:32768/api/CategoryQuiz',
-  USERCATEGORY: 'https://localhost:32768/api/CategoryQuiz/User',
+  DATA: `${BASEURL}CategoryQuiz`,
+  USERCATEGORY: `${BASEURL}CategoryQuiz/User`,
 };
 
 const QUESTIONS = {
-  DATA: 'https://localhost:32768/api/Question',
+  DATA: `${BASEURL}Question`,
 };
 
 const USERQUIZ = {
-  SAVEQUIZ: 'https://localhost:32768/api/UserQuiz',
+  SAVEQUIZ: `${BASEURL}UserQuiz`,
 };
 
 const ENDPOINTS = {
