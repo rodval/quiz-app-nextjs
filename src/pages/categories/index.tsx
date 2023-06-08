@@ -49,9 +49,7 @@ export default function Home() {
             </Text>
             <Text fontWeight={500}>Elige una opcion</Text>
           </Box>
-          <Box marginTop={50} onClick={onRankClick}>
-            <Image w={85} h={85} src="/Img/copa.png" alt="copa" />
-          </Box>
+          <Box marginTop={50} onClick={onRankClick}></Box>
         </Flex>
 
         <Flex w="full" h="full" justifyContent="center">
