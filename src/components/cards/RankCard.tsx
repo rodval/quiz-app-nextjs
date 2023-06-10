@@ -24,7 +24,7 @@ const RankCard = (props: RankCardProps) => {
           <Tbody>
             {!userQuizzes || !userQuizzes.length ? (
               <Tr>
-                <Td>No data</Td>
+                <Td textAlign={'center'}>No data</Td>
               </Tr>
             ) : (
               userQuizzes.map((userQuiz) => (
