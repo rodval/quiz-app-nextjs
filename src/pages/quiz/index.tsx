@@ -24,7 +24,15 @@ export default function Quiz() {
   return (
     <>
       <HStack w="full" h="100vh">
-        <Flex w="full" h="full" alignItems="center" justifyContent="center">
+        <Flex
+          w="full"
+          h="full"
+          alignItems="center"
+          justifyContent="center"
+          bgImage="url('/Img/BG.png')" // Reemplaza '/path/to/your/image.jpg' con la ruta de tu imagen
+          bgSize="cover"
+          bgPosition="center"
+          id="fuck">
           <SimpleGrid columns={1} spacing={10} alignContent="center">
             <Questions categoryId={Number(categoryId)} questions={questions} />
           </SimpleGrid>

@@ -29,6 +29,7 @@ const AnswerButton = (props: AnswerButtonProps) => {
       textColor={'blue.400'}
       fontWeight="bold"
       fontSize={22}
+      backgroundColor={'white'}
       key={id}
       onClick={onClick}
       isDisabled={showFeedback}
