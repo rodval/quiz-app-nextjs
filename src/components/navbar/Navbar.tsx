@@ -29,14 +29,14 @@ function Navbar() {
 
       <Box>
         <Flex>
-          <Link href={ROUTES.CATEGORIES}>
+          <Link marginLeft={10} href={ROUTES.CATEGORIES}>
             <Text>Categorias</Text>
           </Link>
-          <Link href={ROUTES.RANK}>
+          <Link marginLeft={5} href={ROUTES.RANK}>
             <Text>Ranking</Text>
           </Link>
           <Button
-            marginLeft={2}
+            marginLeft={5}
             color="white"
             backgroundColor={'red'}
             variant="outline"
