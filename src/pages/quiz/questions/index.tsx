@@ -74,7 +74,7 @@ const Questions = (props: QuestionsProps) => {
     <Stack mx={0}>
       <Center w="100%" h="100vh" id="555">
         {isQuizDone ? (
-          <Stack backgroundColor={'white'}>
+          <Stack bg="rgba(0, 0, 0, 0.001)">
             <Center height="100vh">
               <Box textAlign="center">
                 <Img src="/Img/checkDone.png" alt="Imagen" boxSize="300px" mx="auto" />
