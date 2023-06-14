@@ -1,4 +1,4 @@
-const BASEURL = 'https://localhost:32770/api/';
+const BASEURL = 'https://localhost:32768/api/';
 
 const AUTH = {
   SIGNIN: `${BASEURL}Auth/SignIn`,
