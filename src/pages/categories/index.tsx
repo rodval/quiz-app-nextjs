@@ -13,10 +13,16 @@ export default function Home() {
   const [userCategories, setUserCategories] = useState<ICategoryQuiz[]>([]);
 
   const onCardClick = (category: ICategoryQuiz) => {
-    router.push({
-      pathname: ROUTES.QUIZ,
-      query: { categoryId: category.id },
-    });
+    router.push(
+      {
+        pathname: ROUTES.QUIZ,
+        query: {
+          categoryId: category.id,
+          title: category.category.title,
+        },
+      },
+      ROUTES.CATEGORIES
+    );
   };
 
   const onRankClick = () => {
@@ -41,7 +47,7 @@ export default function Home() {
           'linear(to-t, blue.200, teal.500)',
           'linear(to-b, orange.100, purple.300)',
         ]}>
-        <Navbar></Navbar>
+        <Navbar />
         <Flex justifyContent="space-around" alignItems="center" w="full" marginTop={75}>
           <Box marginTop={50}>
             <Text fontSize={40} fontWeight={700} color="pink.300">
@@ -51,7 +57,6 @@ export default function Home() {
           </Box>
           <Box marginTop={50} onClick={onRankClick}></Box>
         </Flex>
-
         <Flex w="full" h="full" justifyContent="center">
           <SimpleGrid columns={2} spacing={20} alignContent="center">
             {userCategories.map((userCategory) => (

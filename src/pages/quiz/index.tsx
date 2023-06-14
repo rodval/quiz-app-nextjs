@@ -8,7 +8,7 @@ import Questions from './questions';
 
 export default function Quiz() {
   const router = useRouter();
-  const { categoryId } = router.query;
+  const { categoryId, title } = router.query;
   const { token } = UseTokenStore((tokenStore) => tokenStore);
   const [numberOfQuestions] = useState(5);
   const [questions, setQuestions] = useState<IQuestion[]>([]);
@@ -34,7 +34,7 @@ export default function Quiz() {
           bgPosition="center"
           id="fuck">
           <SimpleGrid columns={1} spacing={10} alignContent="center">
-            <Questions categoryId={Number(categoryId)} questions={questions} />
+            <Questions categoryId={Number(categoryId)} categoryTitle={String(title)} questions={questions} />
           </SimpleGrid>
         </Flex>
       </HStack>

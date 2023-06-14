@@ -1,4 +1,4 @@
-import { Box, Flex, Button, Text, Link } from '@chakra-ui/react';
+import { Box, Flex, Button, Text, Link, BreadcrumbItem } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import ROUTES from '@/constants/routes';
 import { FiLogOut } from 'react-icons/fi';
@@ -23,20 +23,18 @@ function Navbar() {
       bgGradient="linear(to-r, purple.300, blue.300)"
       color="white"
       mx={2}>
-      {/* Logo en el extremo derecho */}
-
       <Box>
         <img src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
       </Box>
 
       <Box>
         <Flex>
-          <NextLink href="/categories" passHref>
-            <Link mx={2}>Categorias</Link>
-          </NextLink>
-          <NextLink href="/rank">
-            <Link mx={2}>Ranking</Link>
-          </NextLink>
+          <Link href={ROUTES.CATEGORIES}>
+            <Text>Categorias</Text>
+          </Link>
+          <Link href={ROUTES.RANK}>
+            <Text>Ranking</Text>
+          </Link>
           <Button
             marginLeft={2}
             color="white"
@@ -50,7 +48,6 @@ function Navbar() {
           </Button>
         </Flex>
       </Box>
-      {/* Botón de cerrar sesión en el extremo izquierdo */}
     </Flex>
   );
 }

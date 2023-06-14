@@ -9,12 +9,13 @@ import ROUTES from '@/constants/routes';
 
 type QuestionsProps = {
   categoryId: number;
+  categoryTitle: string;
   questions: IQuestion[];
 };
 
 const Questions = (props: QuestionsProps) => {
   const router = useRouter();
-  const { categoryId, questions } = props;
+  const { categoryId, categoryTitle, questions } = props;
   const { token } = UseTokenStore((tokenStore) => tokenStore);
   const [seconds, setSeconds] = useState(10);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -91,7 +92,7 @@ const Questions = (props: QuestionsProps) => {
         ) : (
           <Stack bg="rgba(0, 0, 0, 0.001)" id="100">
             <Text fontWeight={'bold'} fontSize={35}>
-              Trivia de Matematicas.
+              Trivia de {categoryTitle}.
             </Text>
             <Text>Elige sabiamente la opcion correcta. Mucha suerte!</Text>
             <Text>Time {seconds}</Text>
