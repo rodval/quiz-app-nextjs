@@ -1,4 +1,4 @@
-const BASEURL = 'https://localhost:32768/api/';
+const BASEURL = 'https://quizappdotnet.azurewebsites.net/api/';
 
 const AUTH = {
   SIGNIN: `${BASEURL}Auth/SignIn`,
