@@ -9,7 +9,7 @@ export default function Rank() {
   const { token } = UseTokenStore((tokenStore) => tokenStore);
   const [categories, setCategories] = useState<ICategoryQuiz[]>([]);
 
-  const { isFetching, isIdle, isError, status } = useQuery({
+  const { isError } = useQuery({
     queryKey: 'categories',
     queryFn: () => GetCategories(token),
     onSuccess: (response) => {
@@ -36,9 +36,11 @@ export default function Rank() {
           mx="auto"
           maxW="800px"
           borderRadius={15}>
-          {categories.map((category) => (
-            <RankCard key={category.id} categoryDetail={category} />
-          ))}
+          {isError ? (
+            <Text>error</Text>
+          ) : (
+            categories.map((category) => <RankCard key={category.id} categoryDetail={category} />)
+          )}
         </Grid>
       </Box>
     </Stack>

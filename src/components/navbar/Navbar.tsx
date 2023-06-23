@@ -1,8 +1,7 @@
-import { Box, Flex, Button, Text, Link, BreadcrumbItem } from '@chakra-ui/react';
+import { Box, Flex, Button, Text, Link, Image } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import ROUTES from '@/constants/routes';
 import { FiLogOut } from 'react-icons/fi';
-import NextLink from 'next/link';
 
 function Navbar() {
   const router = useRouter();
@@ -24,7 +23,7 @@ function Navbar() {
       color="white"
       mx={2}>
       <Box>
-        <img src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
+        <Image src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
       </Box>
 
       <Box>

@@ -1,5 +1,5 @@
 import { ICategoryQuiz } from '@/interfaces/API';
-import { Box, Table, Thead, Tbody, Tr, Td, Text, Flex, GridItem } from '@chakra-ui/react';
+import { Box, Table, Thead, Tbody, Tr, Td, Text, Flex, GridItem, Image } from '@chakra-ui/react';
 
 type RankCardProps = {
   categoryDetail: ICategoryQuiz;
@@ -14,7 +14,7 @@ const RankCard = (props: RankCardProps) => {
       <Box borderRadius="15">
         <Flex align="center" justify="center">
           <Box>
-            <img src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
+            <Image src="/Img/logoProvisional.png" alt="Logo" width="150px" height="px" />
             <Text> {category.title} </Text>
             <Text>nivel {level}</Text>
           </Box>

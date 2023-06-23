@@ -1,10 +1,10 @@
-import { HStack, SimpleGrid, Flex, Text, Link } from '@chakra-ui/react';
+import { HStack, SimpleGrid, Flex, Text } from '@chakra-ui/react';
 import { IQuestion } from '@/interfaces/API';
 import { GetQuestions, UseTokenStore } from '@/services';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import Questions from './questions';
+import { QuestionCard } from '@/components';
 
 export default function Quiz() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function Quiz() {
   const [numberOfQuestions] = useState(5);
   const [questions, setQuestions] = useState<IQuestion[]>([]);
 
-  const { isFetching, isIdle, isError, status } = useQuery({
+  const { isError } = useQuery({
     queryKey: 'questions',
     queryFn: () => GetQuestions({ categoryQuizId: Number(categoryId), numberOfQuestions, token }),
     onSuccess: (response) => {
@@ -34,7 +34,11 @@ export default function Quiz() {
           bgPosition="center"
           id="fuck">
           <SimpleGrid columns={1} spacing={10} alignContent="center">
-            <Questions categoryId={Number(categoryId)} categoryTitle={String(title)} questions={questions} />
+            {isError ? (
+              <Text>error</Text>
+            ) : (
+              <QuestionCard categoryId={Number(categoryId)} categoryTitle={String(title)} questions={questions} />
+            )}
           </SimpleGrid>
         </Flex>
       </HStack>
