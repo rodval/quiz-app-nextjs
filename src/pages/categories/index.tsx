@@ -1,4 +1,4 @@
-import { VStack, SimpleGrid, Flex, Box, Text, Image } from '@chakra-ui/react';
+import { VStack, SimpleGrid, Flex, Box, Text } from '@chakra-ui/react';
 import { ICategoryQuiz } from '@/interfaces/API';
 import { GetUserCategories, UseTokenStore } from '@/services';
 import { useState } from 'react';
@@ -29,7 +29,7 @@ export default function Home() {
     router.push(ROUTES.RANK);
   };
 
-  const { isFetching, isIdle, isError, status } = useQuery({
+  const { isError } = useQuery({
     queryKey: 'userCategories',
     queryFn: () => GetUserCategories(token),
     onSuccess: (response) => {
@@ -59,9 +59,13 @@ export default function Home() {
         </Flex>
         <Flex w="full" h="full" justifyContent="center">
           <SimpleGrid columns={2} spacing={20} alignContent="center">
-            {userCategories.map((userCategory) => (
-              <CategoryCard key={userCategory.id} categoryDetail={userCategory} onCardClick={onCardClick} />
-            ))}
+            {isError ? (
+              <Text>error</Text>
+            ) : (
+              userCategories.map((userCategory) => (
+                <CategoryCard key={userCategory.id} categoryDetail={userCategory} onCardClick={onCardClick} />
+              ))
+            )}
           </SimpleGrid>
         </Flex>
       </VStack>

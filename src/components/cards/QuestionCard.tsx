@@ -1,11 +1,11 @@
 import { SimpleGrid, Flex, Card, CardBody, Stack, Text, Box, Center, Button, Img } from '@chakra-ui/react';
 import { SaveUserQuizService, UseTokenStore } from '@/services';
-import { AnswerButton } from '@/components';
+import ROUTES from '@/constants/routes';
 import { IQuestion } from '@/interfaces/API';
 import { useState, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { useRouter } from 'next/router';
-import ROUTES from '@/constants/routes';
+import { AnswerButton } from '../buttons';
 
 type QuestionsProps = {
   categoryId: number;
@@ -13,7 +13,7 @@ type QuestionsProps = {
   questions: IQuestion[];
 };
 
-const Questions = (props: QuestionsProps) => {
+const QuestionCard = (props: QuestionsProps) => {
   const router = useRouter();
   const { categoryId, categoryTitle, questions } = props;
   const { token } = UseTokenStore((tokenStore) => tokenStore);
@@ -153,4 +153,4 @@ const Questions = (props: QuestionsProps) => {
   );
 };
 
-export default Questions;
+export default QuestionCard;
